@@ -25,7 +25,7 @@ export default function AddPdfForm() {
     setLoading(true);
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from("pdfs")
-      .upload(`public/${doctorid}`, selectedPDF);
+      .upload(`${doctorid}/${Date.now()}`, selectedPDF);
     if (uploadError) {
       console.log(uploadError);
       setErrorMessage("ERROR! PDF upload failed");

@@ -43,7 +43,7 @@ export default function SearchPatientForm() {
       .eq("patientid", patient.patientid)
       .eq("doctorid", doctorid);
 
-    if (!checkData) {
+    if (!checkData[0]) {
       const { data: addData, error: insertError } = await supabase
         .from("doctorpatient")
         .insert([
@@ -56,6 +56,7 @@ export default function SearchPatientForm() {
         console.log(insertError);
         setErrorMessage("ERROR! Adding patient failed.");
       } else {
+        setErrorMessage("SUCCESS! Patient added.");
         console.log(addData);
       }
     } else {
@@ -77,11 +78,7 @@ export default function SearchPatientForm() {
         <button onClick={searchPatientByID}>
           {loading ? "Searching..." : "Search"}
         </button>
-        {errorMessage && (
-          <p>
-            {errorMessage}
-          </p>
-        )}
+        {errorMessage && <p>{errorMessage}</p>}
       </form>
 
       {patient && (
