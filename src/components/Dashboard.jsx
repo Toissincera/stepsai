@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
-import { supabaseKEY, supabaseURL } from "../secrets/envlocalsecrets";
 import SearchPatientForm from "./SearchPatientForm";
 import "../App.css";
 import AddPdfForm from "./AddPdfForm";
+import { supabase } from "../App";
 
-const supabase = createClient(supabaseURL, supabaseKEY);
 
 export default function DoctorProfile() {
   const { doctorid } = useParams();
