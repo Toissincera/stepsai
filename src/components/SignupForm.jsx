@@ -5,7 +5,6 @@ import Dropdown from "./Dropdown";
 import { departmentsList } from "../refData/refVariables";
 import "../App.css";
 
-
 export default function SignupForm() {
   const [signupName, setSignupName] = useState("");
   const [signupEmail, setSignupEmail] = useState("");
@@ -61,21 +60,24 @@ export default function SignupForm() {
   }
 
   return (
-    <form className="list">
+    <form className="d-flex flex-column justify-content-center align-items-center p-3 m-5">
       <h2>Sign Up Today</h2>
       <input
+        className="p-2 m-2 bg-light-subtle border border-2 border-success lead rounded"
         type="text"
         placeholder="Doctor Name"
         value={signupName}
         onChange={(e) => setSignupName(e.target.value)}
       />
       <input
+        className="p-2 m-2 bg-light-subtle border border-2 border-success lead rounded"
         type="email"
         placeholder="Email"
         value={signupEmail}
         onChange={(e) => setSignupEmail(e.target.value)}
       />
       <input
+        className="p-2 m-2 bg-light-subtle border border-2 border-success lead rounded"
         type="password"
         placeholder="Password"
         value={signupPassword}
@@ -89,7 +91,12 @@ export default function SignupForm() {
         onChange={(e) => setDepartment(e.target.value)}
       />
 
-      <button onClick={handleSignUp}>Sign Up</button>
+      <button
+        className="w-100 m-2 btn btn-lg btn-primary"
+        onClick={handleSignUp}
+      >
+        Sign Up
+      </button>
       {error && <p>{error}</p>}
     </form>
   );

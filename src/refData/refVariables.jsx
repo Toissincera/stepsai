@@ -1,5 +1,5 @@
 export const departmentsList = [
-  { label: "Any", value: "Any" },
+  { label: "Department", value: "Any" },
   { label: "Anaesthetics", value: "Anaesthetics" },
   { label: "Cardiology", value: "Cardiology" },
   { label: "ENT", value: "ENT" },
