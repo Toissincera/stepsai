@@ -60,7 +60,7 @@ export default function SignupForm() {
   }
 
   return (
-    <form className="d-flex flex-column justify-content-center align-items-center p-3 m-5">
+    <form className="d-flex flex-column c p-3 m-5">
       <h2>Sign Up Today</h2>
       <input
         className="p-2 m-2 bg-light-subtle border border-2 border-success lead rounded"

@@ -28,7 +28,7 @@ export default function LoginForm() {
   }
 
   return (
-    <form className="d-flex flex-column justify-content-center align-items-center p-3 m-5">
+    <form className="d-flex flex-column c p-3 m-5">
       <h2>...Or Sign In</h2>
       <input
         className="p-2 m-2 bg-light-subtle border border-2 border-success lead rounded"

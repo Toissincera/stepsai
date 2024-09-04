@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { supabase } from "../App";
 
 export default function CreateAssignment() {
   const [allQ, setAllQ] = useState([]);
@@ -20,8 +21,21 @@ export default function CreateAssignment() {
     setCorrect("");
   }
 
+  // ADD TEST TO SUPABASE, CONFIGURE BEFORE COMMIT
+  async function addTestToDatabase() {
+    const { data, error } = await supabase.from("doctors").insert([
+      {
+        doctorid: data.user.id,
+        name: signupName,
+        email: signupEmail,
+        passwordhash: signupPassword,
+        department: department,
+      },
+    ]);
+  }
+
   return (
-    <div className="d-flex container justify-content-center bg-warning p-3">
+    <div className="d-flex c bg-warning p-3">
       <div className="row row-cols-1 row-cols-md-2 g-2 w-50">
         {allQ.map((q, ix) => (
           <div
@@ -51,9 +65,14 @@ export default function CreateAssignment() {
             </div>
           </div>
         ))}
+        <div className="card h-100 c">
+          <h5 className="card-title c p-3 m-0">
+            <i className="bi bi-plus-square"></i>
+          </h5>
+        </div>
       </div>
 
-      <div className="d-flex container flex-column w-50 justify-content-center bg-dark p-3">
+      <div className="d-flex container flex-column w-50 c bg-dark p-3">
         <div className="input-group my-2">
           <textarea
             placeholder="MCQ question here..."
