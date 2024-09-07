@@ -3,6 +3,7 @@ import { supabase } from "../../App";
 import AssMetaAccordion from "./AssMetaAccordion";
 import QGrid from "./QGrid";
 import AddMCQ from "./AddMCQ";
+import AddLongForm from "./AddLongForm";
 
 export default function CreateAssignment() {
   const [allQ, setAllQ] = useState([]);
@@ -62,6 +63,7 @@ export default function CreateAssignment() {
           handleOptionChange={handleOptionChange}
           addQuestion={addQuestion}
         />
+        <AddLongForm />
       </div>
     </div>
   );
