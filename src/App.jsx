@@ -3,9 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import RouteProtector from "./components/RouteProtector";
-import CreateAssignment from "./components/CreateAssignment";
+import CreateAssignment from "./pages/create/CreateAssignment";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Carousel from "./components/Carousel";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
@@ -33,6 +34,10 @@ export default function App() {
         <Route
           path="/create"
           element={<CreateAssignment />}
+        />
+        <Route
+          path="/carousel"
+          element={<Carousel />}
         />
         <Route
           path="*"
