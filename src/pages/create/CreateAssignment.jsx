@@ -44,7 +44,7 @@ export default function CreateAssignment() {
   return (
     <div className="d-flex c bg-warning p-3">
       <QGrid allQ={allQ} />
-      <div className="d-flex container flex-column w-50 c bg-dark p-3">
+      <div className="d-flex container flex-column w-50 c  p-3">
         <AssMetaAccordion
           assName={assName}
           setAssName={setAssName}

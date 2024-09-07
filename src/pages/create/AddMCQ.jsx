@@ -13,7 +13,9 @@ export default function AddMCQ({
     <>
       <textarea
         placeholder="MCQ question here..."
-        className="form-control input-group my-2 p-2"
+        className="form-control input-group my-2 p-3"
+        maxLength={500}
+        rows={3}
         value={currQ}
         onChange={(e) => setCurrQ(e.target.value)}
       ></textarea>
