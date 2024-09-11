@@ -1,13 +1,15 @@
 import React from "react";
 
 export default function AddMCQ({
-  currQ,
-  setCurrQ,
-  correct,
-  setCorrect,
+  currMCQ,
+  setCurrMCQ,
+  correctMCQ,
+  setCorrectMCQ,
   options,
   handleOptionChange,
-  addQuestion,
+  marksMCQ,
+  setMarksMCQ,
+  handleAddMCQ,
 }) {
   return (
     <div
@@ -38,8 +40,8 @@ export default function AddMCQ({
               className="form-control input-group my-2 p-3"
               maxLength={500}
               rows={3}
-              value={currQ}
-              onChange={(e) => setCurrQ(e.target.value)}
+              value={currMCQ}
+              onChange={(e) => setCurrMCQ(e.target.value)}
             ></textarea>
 
             <div className="row g-2">
@@ -51,7 +53,7 @@ export default function AddMCQ({
                   <input
                     type="text"
                     className={`form-control ${
-                      o == correct &&
+                      o == correctMCQ &&
                       "bg-success-subtle border-4 border-success"
                     }`}
                     placeholder="Set Option..."
@@ -62,29 +64,36 @@ export default function AddMCQ({
               ))}
             </div>
 
-            <div className="input-group mt-4">
-              <select className="form-select bg-success border-0 w-50">
+            <div className="input-group mt-2">
+              <select className="form-select bg-success border-0">
                 {options.map((o, ix) => (
                   <option
                     key={ix}
                     value={o}
-                    onClick={() => setCorrect(options[ix])}
+                    onClick={() => setCorrectMCQ(options[ix])}
                   >
                     {o || "To be set..."}
                   </option>
                 ))}
               </select>
+              <input
+                type="text"
+                className="form-control bg-success border-0"
+                placeholder="Set Marks..."
+                value={marksMCQ}
+                onChange={(e) => setMarksMCQ(e.target.value, i)}
+              />
               <button
                 type="button"
                 className="btn btn-primary w-50"
-                onClick={() => addQuestion()}
+                onClick={() => handleAddMCQ()}
                 disabled={
-                  !currQ ||
+                  !currMCQ ||
                   !options[0] ||
                   !options[1] ||
                   !options[2] ||
                   !options[3] ||
-                  !correct
+                  !correctMCQ
                 }
               >
                 Save

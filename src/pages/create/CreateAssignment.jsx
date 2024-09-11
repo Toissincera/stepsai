@@ -1,32 +1,46 @@
 import { useState } from "react";
 import { supabase } from "../../App";
-import AssMetaAccordion from "./AssMetaAccordion";
+import AddMeta from "./AddMeta";
 import QGrid from "./QGrid";
 import AddMCQ from "./AddMCQ";
 import AddLongForm from "./AddLongForm";
 
 export default function CreateAssignment() {
-  const [allQ, setAllQ] = useState([]);
-
-  const [currQ, setCurrQ] = useState("");
-  const [options, setOptions] = useState(["", "", "", ""]);
-  const [correct, setCorrect] = useState("");
-
   const [assName, setAssName] = useState("");
   const [className, setClassName] = useState("");
   const [passMarks, setPassMarks] = useState(0);
 
+  const [allQ, setAllQ] = useState([]);
+
+  const [currMCQ, setCurrMCQ] = useState("");
+  const [options, setOptions] = useState(["", "", "", ""]);
+  const [correctMCQ, setCorrectMCQ] = useState("");
+  const [marksMCQ, setMarksMCQ] = useState(1);
+
+  const [longQ, setLongQ] = useState("");
+  const [longCorrect, setLongCorrect] = useState("");
+
+  // TERRIBLE CODE
   const handleOptionChange = (value, index) => {
     const newOptions = [...options];
     newOptions[index] = value;
     setOptions(newOptions);
   };
 
-  function addQuestion() {
-    setAllQ([...allQ, { currQ: currQ, options: options, correct: correct }]);
-    setCurrQ("");
+  function handleAddMCQ() {
+    setAllQ([
+      ...allQ,
+      { q: currMCQ, options: options, correct: correctMCQ, qType: "MCQ" },
+    ]);
+    setCurrMCQ("");
     setOptions(["", "", "", ""]);
-    setCorrect("");
+    setCorrectMCQ("");
+  }
+
+  function handleAddLongQ() {
+    setAllQ([...allQ, { q: longQ, correct: longCorrect, qType: "Long" }]);
+    setLongQ("");
+    setLongCorrect("");
   }
 
   // ADD TEST TO SUPABASE, CONFIGURE BEFORE COMMIT
@@ -46,7 +60,7 @@ export default function CreateAssignment() {
     <div className="d-flex c bg-warning p-3">
       <QGrid allQ={allQ} />
       <div className="d-flex container flex-column w-50 c  p-3">
-        <AssMetaAccordion
+        <AddMeta
           assName={assName}
           setAssName={setAssName}
           className={className}
@@ -55,15 +69,23 @@ export default function CreateAssignment() {
           setPassMarks={setPassMarks}
         />
         <AddMCQ
-          currQ={currQ}
-          setCurrQ={setCurrQ}
-          correct={correct}
-          setCorrect={setCorrect}
+          currMCQ={currMCQ}
+          setCurrMCQ={setCurrMCQ}
+          correctMCQ={correctMCQ}
+          setCorrectMCQ={setCorrectMCQ}
           options={options}
           handleOptionChange={handleOptionChange}
-          addQuestion={addQuestion}
+          marksMCQ={marksMCQ}
+          setMarksMCQ={setMarksMCQ}
+          handleAddMCQ={handleAddMCQ}
         />
-        <AddLongForm />
+        <AddLongForm
+          longQ={longQ}
+          setLongQ={setLongQ}
+          longCorrect={longCorrect}
+          setLongCorrect={setLongCorrect}
+          handleAddLongQ={handleAddLongQ}
+        />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function AssMetaAccordion({
+export default function AddMeta({
   assName,
   setAssName,
   className,
@@ -23,7 +23,7 @@ export default function AssMetaAccordion({
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-            {assName || "Assignment"} Settings
+            Assignment Settings
           </button>
         </h2>
         <div
