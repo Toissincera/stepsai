@@ -37,24 +37,24 @@ export default function AddMCQ({
           <div className="accordion-body">
             <textarea
               placeholder="MCQ question here..."
-              className="form-control input-group my-2 p-3"
+              className="form-control input-group bg-success-subtle border-3 border-success my-2 p-3"
               maxLength={500}
               rows={3}
               value={currMCQ}
               onChange={(e) => setCurrMCQ(e.target.value)}
             ></textarea>
 
-            <div className="row g-2">
+            <div className="d-flex flex-wrap">
               {options.map((o, i) => (
                 <div
-                  className="col-6"
+                  className="w-50 p-1"
                   key={i}
                 >
                   <input
                     type="text"
                     className={`form-control ${
                       o == correctMCQ &&
-                      "bg-success-subtle border-4 border-success"
+                      "bg-success-subtle border-3 border-success"
                     }`}
                     placeholder="Set Option..."
                     value={o}
@@ -64,40 +64,53 @@ export default function AddMCQ({
               ))}
             </div>
 
-            <div className="input-group mt-2">
-              <select className="form-select bg-success border-0">
-                {options.map((o, ix) => (
-                  <option
-                    key={ix}
-                    value={o}
-                    onClick={() => setCorrectMCQ(options[ix])}
-                  >
-                    {o || "To be set..."}
-                  </option>
-                ))}
-              </select>
-              <input
-                type="text"
-                className="form-control bg-success border-0"
-                placeholder="Set Marks..."
-                value={marksMCQ}
-                onChange={(e) => setMarksMCQ(e.target.value, i)}
-              />
-              <button
-                type="button"
-                className="btn btn-primary w-50"
-                onClick={() => handleAddMCQ()}
-                disabled={
-                  !currMCQ ||
-                  !options[0] ||
-                  !options[1] ||
-                  !options[2] ||
-                  !options[3] ||
-                  !correctMCQ
-                }
-              >
-                Save
-              </button>
+            <div className="d-flex">
+              <div className="d-flex flex-column w-75 p-1">
+                <div className="input-group w-100">
+                  <span className="input-group-text w-25 my-1">Correct: </span>
+
+                  <select className="form-select bg-success-subtle border-3 border-success my-1">
+                    {options.map((o, ix) => (
+                      <option
+                        key={ix}
+                        value={o}
+                        onClick={() => setCorrectMCQ(options[ix])}
+                      >
+                        {o || "To be set..."}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="input-group w-100">
+                  <span className="input-group-text w-25 my-1">Marks: </span>
+                  <input
+                    type="text"
+                    className="form-control bg-success-subtle border-3 border-success my-1"
+                    placeholder="1"
+                    value={marksMCQ}
+                    onChange={(e) => setMarksMCQ(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="d-flex w-25 p-2">
+                <button
+                  type="button"
+                  className="btn btn-primary w-100 h-100"
+                  onClick={() => handleAddMCQ()}
+                  disabled={
+                    !currMCQ ||
+                    !options[0] ||
+                    !options[1] ||
+                    !options[2] ||
+                    !options[3] ||
+                    !correctMCQ
+                  }
+                >
+                  Save
+                </button>
+              </div>
             </div>
           </div>
         </div>

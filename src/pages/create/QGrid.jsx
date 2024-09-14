@@ -27,7 +27,10 @@ export default function QGrid({ allQ }) {
 function QCard({ q, i }) {
   return (
     <div className="col">
-      <div className="card h-100">
+      <div className="card h-100 position-relative">
+        <div className="position-absolute top-0 end-0 lead fw-bold px-3 py-2">
+          {q.marks}
+        </div>
         <div className="card-body text-black">
           <p className="card-text">
             {i + 1}. {q.q}

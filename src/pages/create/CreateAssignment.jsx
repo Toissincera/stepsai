@@ -19,6 +19,7 @@ export default function CreateAssignment() {
 
   const [longQ, setLongQ] = useState("");
   const [longCorrect, setLongCorrect] = useState("");
+  const [marksLong, setMarksLong] = useState(10);
 
   // TERRIBLE CODE
   const handleOptionChange = (value, index) => {
@@ -30,17 +31,28 @@ export default function CreateAssignment() {
   function handleAddMCQ() {
     setAllQ([
       ...allQ,
-      { q: currMCQ, options: options, correct: correctMCQ, qType: "MCQ" },
+      {
+        q: currMCQ,
+        options: options,
+        correct: correctMCQ,
+        qType: "MCQ",
+        marks: marksMCQ,
+      },
     ]);
     setCurrMCQ("");
     setOptions(["", "", "", ""]);
     setCorrectMCQ("");
+    setMarksMCQ(1);
   }
 
   function handleAddLongQ() {
-    setAllQ([...allQ, { q: longQ, correct: longCorrect, qType: "Long" }]);
+    setAllQ([
+      ...allQ,
+      { q: longQ, correct: longCorrect, qType: "Long", marks: marksLong },
+    ]);
     setLongQ("");
     setLongCorrect("");
+    setMarksLong(10);
   }
 
   // ADD TEST TO SUPABASE, CONFIGURE BEFORE COMMIT
@@ -84,6 +96,8 @@ export default function CreateAssignment() {
           setLongQ={setLongQ}
           longCorrect={longCorrect}
           setLongCorrect={setLongCorrect}
+          marksLong={marksLong}
+          setMarksLong={setMarksLong}
           handleAddLongQ={handleAddLongQ}
         />
       </div>
