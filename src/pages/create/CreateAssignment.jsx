@@ -8,6 +8,7 @@ import AddLongForm from "./AddLongForm";
 export default function CreateAssignment() {
   const [assName, setAssName] = useState("");
   const [className, setClassName] = useState("");
+  const [subjectName, setSubjectName] = useState("");
   const [passMarks, setPassMarks] = useState(0);
 
   const [allQ, setAllQ] = useState([]);
@@ -70,13 +71,21 @@ export default function CreateAssignment() {
 
   return (
     <div className="d-flex c bg-warning p-3">
-      <QGrid allQ={allQ} />
+      <QGrid
+        allQ={allQ}
+        assName={assName}
+        className={className}
+        subjectName={subjectName}
+        passMarks={passMarks}
+      />
       <div className="d-flex container flex-column w-50 c  p-3">
         <AddMeta
           assName={assName}
           setAssName={setAssName}
           className={className}
           setClassName={setClassName}
+          subjectName={subjectName}
+          setSubjectName={setSubjectName}
           passMarks={passMarks}
           setPassMarks={setPassMarks}
         />

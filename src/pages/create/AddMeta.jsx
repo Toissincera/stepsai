@@ -5,8 +5,10 @@ export default function AddMeta({
   setAssName,
   className,
   setClassName,
+  subjectName,
+  setSubjectName,
   passMarks,
-  setPassMarks, 
+  setPassMarks,
 }) {
   return (
     <div
@@ -31,27 +33,39 @@ export default function AddMeta({
           className="accordion-collapse collapse show"
           data-bs-parent="#accordionExample"
         >
-          <div className="accordion-body">
-            <div className="input-group my-2">
+          <div className="accordion-body d-flex flex-wrap">
+            <div className="input-group w-50 p-1">
+              <span className="input-group-text my-1">Name:</span>
               <input
                 type="text"
-                className="form-control"
-                placeholder="Assignment Name"
+                className="form-control bg-success-subtle border-3 border-success my-1"
                 value={assName}
                 onChange={(e) => setAssName(e.target.value)}
               />
+            </div>
+            <div className="input-group w-50 p-1">
+              <span className="input-group-text my-1">Class:</span>
               <input
                 type="text"
-                className="form-control"
-                placeholder="Class Name (Optional)"
+                className="form-control bg-success-subtle border-3 border-success my-1"
                 value={className}
                 onChange={(e) => setClassName(e.target.value)}
               />
-              <span className="input-group-text">Pass Marks</span>
+            </div>
+            <div className="input-group w-50 p-1">
+              <span className="input-group-text my-1">Subject:</span>
               <input
-                type="number"
-                className="form-control"
-                placeholder="Passing Marks (Optional)"
+                type="text"
+                className="form-control bg-success-subtle border-3 border-success my-1"
+                value={subjectName}
+                onChange={(e) => setSubjectName(e.target.value)}
+              />
+            </div>
+            <div className="input-group w-50 p-1">
+              <span className="input-group-text my-1">Passing marks:</span>
+              <input
+                type="text"
+                className="form-control bg-success-subtle border-3 border-success my-1"
                 value={passMarks}
                 onChange={(e) => setPassMarks(e.target.value)}
               />
