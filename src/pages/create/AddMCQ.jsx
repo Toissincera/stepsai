@@ -1,16 +1,6 @@
 import React from "react";
 
-export default function AddMCQ({
-  currMCQ,
-  setCurrMCQ,
-  correctMCQ,
-  setCorrectMCQ,
-  options,
-  handleOptionChange,
-  marksMCQ,
-  setMarksMCQ,
-  handleAddMCQ,
-}) {
+export default function AddMCQ({ MCQ, handleMCQChange, handleAddMCQ }) {
   return (
     <div
       className="accordion w-100 my-2"
@@ -40,12 +30,13 @@ export default function AddMCQ({
               className="form-control input-group bg-success-subtle border-3 border-success my-2 p-3"
               maxLength={500}
               rows={3}
-              value={currMCQ}
-              onChange={(e) => setCurrMCQ(e.target.value)}
+              name="question"
+              value={MCQ.question}
+              onChange={(e) => handleMCQChange(e)}
             ></textarea>
 
             <div className="d-flex flex-wrap">
-              {options.map((o, i) => (
+              {["option1", "option2", "option3", "option4"].map((o, i) => (
                 <div
                   className="w-50 p-1"
                   key={i}
@@ -53,12 +44,13 @@ export default function AddMCQ({
                   <input
                     type="text"
                     className={`form-control ${
-                      o == correctMCQ &&
+                      MCQ[o] == MCQ.correct &&
                       "bg-success-subtle border-3 border-success"
                     }`}
                     placeholder="Set Option..."
-                    value={o}
-                    onChange={(e) => handleOptionChange(e.target.value, i)}
+                    name={o}
+                    value={MCQ[o]}
+                    onChange={(e) => handleMCQChange(e)}
                   />
                 </div>
               ))}
@@ -70,13 +62,13 @@ export default function AddMCQ({
                   <span className="input-group-text w-25 my-1">Correct: </span>
 
                   <select className="form-select bg-success-subtle border-3 border-success my-1">
-                    {options.map((o, ix) => (
+                    {["option1", "option2", "option3", "option4"].map((o) => (
                       <option
-                        key={ix}
-                        value={o}
-                        onClick={() => setCorrectMCQ(options[ix])}
+                        key={o}
+                        value={MCQ[o]}
+                        onClick={(e) => handleMCQChange(e)}
                       >
-                        {o || "To be set..."}
+                        {MCQ[o] || "To be set..."}
                       </option>
                     ))}
                   </select>
@@ -88,8 +80,9 @@ export default function AddMCQ({
                     type="text"
                     className="form-control bg-success-subtle border-3 border-success my-1"
                     placeholder="1"
-                    value={marksMCQ}
-                    onChange={(e) => setMarksMCQ(e.target.value)}
+                    name={"marks"}
+                    value={MCQ.marks}
+                    onChange={(e) => handleMCQChange(e)}
                   />
                 </div>
               </div>
@@ -100,12 +93,12 @@ export default function AddMCQ({
                   className="btn btn-primary w-100 h-100"
                   onClick={() => handleAddMCQ()}
                   disabled={
-                    !currMCQ ||
-                    !options[0] ||
-                    !options[1] ||
-                    !options[2] ||
-                    !options[3] ||
-                    !correctMCQ
+                    !MCQ.question ||
+                    !MCQ.option1 ||
+                    !MCQ.option2 ||
+                    !MCQ.option3 ||
+                    !MCQ.option4 ||
+                    !MCQ.correct
                   }
                 >
                   Save

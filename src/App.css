@@ -9,4 +9,5 @@
 
 .bold {
   font-weight: 700;
+  background-color: rgb(red, green, blue);
 }

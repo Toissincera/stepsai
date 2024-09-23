@@ -6,28 +6,38 @@ import AddMCQ from "./AddMCQ";
 import AddLongForm from "./AddLongForm";
 
 export default function CreateAssignment() {
-  const [assName, setAssName] = useState("");
-  const [className, setClassName] = useState("");
-  const [subjectName, setSubjectName] = useState("");
-  const [passMarks, setPassMarks] = useState(0);
+  const [meta, setMeta] = useState({
+    assName: "",
+    className: "",
+    subjectName: "",
+    passMarks: 0,
+  });
+
+  const [MCQ, setMCQ] = useState({
+    question: "",
+    option1: "",
+    option2: "",
+    option3: "",
+    option4: "",
+    correct: "",
+    marks: 1,
+  });
 
   const [allQ, setAllQ] = useState([]);
-
-  const [currMCQ, setCurrMCQ] = useState("");
-  const [options, setOptions] = useState(["", "", "", ""]);
-  const [correctMCQ, setCorrectMCQ] = useState("");
-  const [marksMCQ, setMarksMCQ] = useState(1);
 
   const [longQ, setLongQ] = useState("");
   const [longCorrect, setLongCorrect] = useState("");
   const [marksLong, setMarksLong] = useState(10);
 
-  // TERRIBLE CODE
-  const handleOptionChange = (value, index) => {
-    const newOptions = [...options];
-    newOptions[index] = value;
-    setOptions(newOptions);
-  };
+  function handleMetaChange(e) {
+    setMeta((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function handleMCQChange(e) {
+    console.log(e.target.name, e.target.value, e.target);
+    console.log(MCQ);
+    setMCQ((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
 
   function handleAddMCQ() {
     setAllQ([
@@ -56,7 +66,6 @@ export default function CreateAssignment() {
     setMarksLong(10);
   }
 
-  // ADD TEST TO SUPABASE, CONFIGURE BEFORE COMMIT
   async function addTestToDatabase() {
     const { data, error } = await supabase.from("doctors").insert([
       {
@@ -73,31 +82,17 @@ export default function CreateAssignment() {
     <div className="d-flex c bg-warning p-3">
       <QGrid
         allQ={allQ}
-        assName={assName}
-        className={className}
-        subjectName={subjectName}
-        passMarks={passMarks}
+        setAllQ={setAllQ}
+        meta={meta}
       />
       <div className="d-flex container flex-column w-50 c  p-3">
         <AddMeta
-          assName={assName}
-          setAssName={setAssName}
-          className={className}
-          setClassName={setClassName}
-          subjectName={subjectName}
-          setSubjectName={setSubjectName}
-          passMarks={passMarks}
-          setPassMarks={setPassMarks}
+          meta={meta}
+          handleMetaChange={handleMetaChange}
         />
         <AddMCQ
-          currMCQ={currMCQ}
-          setCurrMCQ={setCurrMCQ}
-          correctMCQ={correctMCQ}
-          setCorrectMCQ={setCorrectMCQ}
-          options={options}
-          handleOptionChange={handleOptionChange}
-          marksMCQ={marksMCQ}
-          setMarksMCQ={setMarksMCQ}
+          MCQ={MCQ}
+          handleMCQChange={handleMCQChange}
           handleAddMCQ={handleAddMCQ}
         />
         <AddLongForm

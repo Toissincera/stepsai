@@ -1,15 +1,6 @@
 import React from "react";
 
-export default function AddMeta({
-  assName,
-  setAssName,
-  className,
-  setClassName,
-  subjectName,
-  setSubjectName,
-  passMarks,
-  setPassMarks,
-}) {
+export default function AddMeta({ meta, handleMetaChange }) {
   return (
     <div
       className="accordion w-100 my-2"
@@ -39,8 +30,9 @@ export default function AddMeta({
               <input
                 type="text"
                 className="form-control bg-success-subtle border-3 border-success my-1"
-                value={assName}
-                onChange={(e) => setAssName(e.target.value)}
+                name="assName"
+                value={meta.assName}
+                onChange={(e) => handleMetaChange(e)}
               />
             </div>
             <div className="input-group w-50 p-1">
@@ -48,8 +40,9 @@ export default function AddMeta({
               <input
                 type="text"
                 className="form-control bg-success-subtle border-3 border-success my-1"
-                value={className}
-                onChange={(e) => setClassName(e.target.value)}
+                name="className"
+                value={meta.className}
+                onChange={(e) => handleMetaChange(e)}
               />
             </div>
             <div className="input-group w-50 p-1">
@@ -57,17 +50,19 @@ export default function AddMeta({
               <input
                 type="text"
                 className="form-control bg-success-subtle border-3 border-success my-1"
-                value={subjectName}
-                onChange={(e) => setSubjectName(e.target.value)}
+                name="subjectName"
+                value={meta.subjectName}
+                onChange={(e) => handleMetaChange(e)}
               />
             </div>
             <div className="input-group w-50 p-1">
               <span className="input-group-text my-1">Passing marks:</span>
               <input
-                type="text"
+                type="number"
                 className="form-control bg-success-subtle border-3 border-success my-1"
-                value={passMarks}
-                onChange={(e) => setPassMarks(e.target.value)}
+                name="passMarks"
+                value={meta.passMarks}
+                onChange={(e) => handleMetaChange(e)}
               />
             </div>
           </div>
