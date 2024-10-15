@@ -4,6 +4,7 @@ import AddMeta from "./AddMeta";
 import QGrid from "./QGrid";
 import AddMCQ from "./AddMCQ";
 import AddLongForm from "./AddLongForm";
+import Wallpapier from "../../assets/wp6621654-minimalist-abstract-wallpapers.png";
 
 export default function CreateAssignment() {
   const [meta, setMeta] = useState({
@@ -79,13 +80,34 @@ export default function CreateAssignment() {
   }
 
   return (
-    <div className="d-flex c bg-warning p-3">
+    <div
+      className="d-flex c p-4"
+      style={{
+        // backgroundImage: `url(${Wallpapier})`,
+        backgroundColor: "#e6e7ee",
+        backgroundOrigin: "border-box",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        height: "clamp(80vh, 80vh, 120vh)",
+      }}
+    >
       <QGrid
         allQ={allQ}
         setAllQ={setAllQ}
         meta={meta}
       />
-      <div className="d-flex container flex-column w-50 c  p-3">
+      <div
+        style={{
+          width: "clamp(2rem, 2rem, 2rem)",
+          height: "clamp(2rem, 2rem, 2rem)",
+        }}
+        className="c"
+      ></div>
+      <div
+        className="accordion d-flex container flex-column isomorph w-50 c p-1"
+        id="parent-accordion"
+      >
         <AddMeta
           meta={meta}
           handleMetaChange={handleMetaChange}

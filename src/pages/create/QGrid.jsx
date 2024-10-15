@@ -3,11 +3,16 @@ import React from "react";
 export default function QGrid({ allQ, setAllQ, meta }) {
   return (
     <div
-      className="d-flex flex-column w-50 bg-dark-subtle border border-3 border-black rounded-4"
-      style={{ minHeight: "70vh", maxHeight: "70vh", overflowY: "auto" }}
+      className="d-flex flex-column w-50 rounded-4 isotablet"
+      style={{
+        height: "clamp(60vh, 60vh, 80vh)", 
+        overflowY: "auto",
+      }}
     >
       <div className="p-3 w-100">
-        <div className="fs-3 fw-bolder">{meta.assName || "Assignment Name..."} </div>
+        <div className="fs-3 fw-bolder">
+          {meta.assName || "Assignment Name..."}{" "}
+        </div>
         <div className="fs-5">{meta.className || "For class..."}</div>
         <div className="fs-5">{meta.subjectName || "In subject..."}</div>
         <div className="fs-5">Pass marks: {meta.passMarks}</div>

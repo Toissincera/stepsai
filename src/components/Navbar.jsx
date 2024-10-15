@@ -3,11 +3,8 @@ import logo from "/CheckrsLogo.png";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-md bg-secondary">
-      <div
-        className="container-fluid"
-        style={{ backgroundColor: "rgb(100, 150, 200)" }}
-      >
+    <nav className="navbar navbar-expand-md bg-dark-subtle">
+      <div className="container-fluid">
         <button
           className="navbar-toggler"
           type="button"
