@@ -7,6 +7,7 @@ import CreateAssignment from "./pages/create/CreateAssignment";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Carousel from "./components/Carousel";
+import RandomColors from "./pages/colors/RandomColors";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
@@ -38,6 +39,10 @@ export default function App() {
         <Route
           path="/carousel"
           element={<Carousel />}
+        />
+        <Route
+          path="/rnd"
+          element={<RandomColors />}
         />
         <Route
           path="*"
