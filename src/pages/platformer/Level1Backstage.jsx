@@ -7,6 +7,7 @@ const _ = "platform";
 const $ = "coin";
 const O = "empty";
 
+
 export const levelOneLayout = [
   [I, I, $, O, O, O, M, O, O, $, O, $, I, I],
   [_, _, _, _, X, X, _, _, X, X, _, _, _, _],
