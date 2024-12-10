@@ -1,0 +1,31 @@
+.myLevel > * {
+  width: clamp(4rem, 4rem, 4rem);
+  height: clamp(4rem, 4rem, 4rem);
+  align-items: center;
+  justify-content: center;
+}
+.wall {
+  background-color: saddlebrown;
+}
+.lava {
+  background-color: red;
+}
+.platform {
+  background-color: darkgreen;
+}
+.coinOuter {
+  display: flex;
+  background-color: aquamarine;
+  align-items: center;
+  justify-content: center;
+}
+.coinInner {
+  background-color: gold;
+  border-radius: 100%;
+  border-color: 1px solid orangered;
+  width: clamp(2rem, 2rem, 2rem);
+  height: clamp(2rem, 2rem, 2rem);
+}
+.empty {
+  background-color: aqua;
+}
